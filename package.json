@@ -1,0 +1,22 @@
+{
+  "name": "server_side_javascript",
+  "version": "1.0.0",
+  "description": "Server Side Javascript",
+  "main": "hello.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeonilJang/nodejsStudy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeonilJang/nodejsStudy/issues"
+  },
+  "homepage": "https://github.com/GeonilJang/nodejsStudy#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
