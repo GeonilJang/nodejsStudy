@@ -1,11 +1,17 @@
 var express = require('express');
 var app = express();
+app.set('view engine', 'jade');
+app.set('views','./views');
 app.listen(3000, function(){
 	console.log('connected 3000 port');
 });
 
 app.use(express.static('public'));
 
+
+app.get('/template', function(req,res){
+	res.render('temp');
+})
 
 app.get('/route', function(req, res){
 	res.send('Hello Route<br> <img src="/Lighthouse.jpg">');
