@@ -46,9 +46,9 @@
 				            </thead>
 				            <tbody>
 								<%
-									String DB_URL = "jdbc:oracle:thin:@27.101.126.181:34000:LFIS";
-									String DB_USER = "lfopenapp";
-									String DB_PASSWORD= "lfopenapp00";
+									String DB_URL = "j";
+									String DB_USER = "";
+									String DB_PASSWORD= "";
 									Connection conn = null;
 									Statement stmt = null;
 									PreparedStatement pstmt = null;

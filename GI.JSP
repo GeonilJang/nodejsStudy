@@ -31,9 +31,7 @@
             
             <tbody>
                 <%  
-                    // String DB_URL = "jdbc:oracle:thin:@27.101.126.181:34000:LFIS";
-                    // String DB_USER = "lfopenapp";
-                    // String DB_PASSWORD= "lfopenapp00";
+                  
                     
                     int total = 0;
                     Connection conn = null;
@@ -45,7 +43,7 @@
                     
                         String sql = "SELECT * FROM( SELECT ROWNUM AS RNUM, Z.* FROM( SELECT * FROM V_FIOS_TBM_REVDESC WHERE DEL_YN = 'Y' AND YMD = TO_CHAR(SYSDATE-1,'YYYYMMDD') )Z )";
                         Class.forName("oracle.jdbc.driver.OracleDriver");
-                        conn = DriverManager.getConnection("jdbc:oracle:thin:@27.101.126.181:34000:LFIS", "lfopenapp", "lfopenapp00");
+                        conn = DriverManager.getConnection("", "", "");
 
                         if (conn == null)
                             throw new Exception("데이터베이스 연결 실패");
