@@ -60,9 +60,46 @@ app.post('/topic/add', function(req, res){
 });
 
 
+app.get(['/topic/:id/edit'], function(req, res){
+	var sql = 'select id, title from topic';
+	conn.query(sql, function(err, topics, fields){
+		var id = req.params.id;
+		if(id){
+			var sql = 'select * from topic where id = ?'
+			conn.query(sql, [id], function(err, topic, fileds){
+				if(err){
+					res.status(500).send('Internal Server Error');
+					console.log(err);
+				}else{
+					res.render('edit', {topics:topics, topic:topic[0]});
+				}
+			});
+		}else{
+			res.render('view', {topics:topics});
+			res.status(500).send('this is no id');	
+		}
+		
+	});
+
+})
 
 
+app.post(['/topic/:id/edit'], function(req, res){
+	var title = req.body.title;
+	var description = req.body.description;
+	var author = req.body.author;
+	var id = req.params.id;
+	var sql = 'update topic set title=?, description=?, author=? where id=?'
+	conn.query(sql, [title, description, author, id], function(err, result, fields){
+		if(err){
+			res.status(500).send('Internal Server Error');
+			console.log(err);
+		}else{
+			res.redirect('/topic/'+id);
+		}
+	})
 
+});
 
 app.post('/topic', function(req, res){
 
@@ -99,6 +136,50 @@ app.get(['/topic','/topic/:id'], function(req, res){
 	});
 
 })
+
+
+app.get(['/topic/:id/delete'], function(req, res){
+	var sql = 'select id, title from topic';
+	var id = req.params.id;
+	conn.query(sql, function(err, topics, fields){
+		var sql = 'select * from topic where id = ?';
+		conn.query(sql, [id], function(err, topic){
+			if(err){
+				res.status(500).send('Internal Server Error');
+				console.log(err);
+			}else{
+				if(topic.length === 0){
+					res.status(500).send('Internal Server Error');
+					console.log(err);
+				}else{
+					res.render('delete', {topics:topics, topic:topic[0]});
+				}
+
+				
+				
+			}
+		})
+		
+	});
+	
+
+});
+
+
+app.post(['/topic/:id/delete'], function(req, res){
+	var id = req.params.id;
+	var sql = 'delete from topic where id = ?';
+	conn.query(sql, [id], function(err, result){
+		if(err){
+			res.status(500).send('Internal Server Error');
+			console.log(err);
+		}else{
+			res.redirect('/topic/');
+		}
+
+
+	});
+});
 	
 
 	/*
