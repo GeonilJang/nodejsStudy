@@ -7,7 +7,7 @@ var conn = mysql.createConnection({
 });
 
 conn.connect();
-//var sql="select * from topic";
+/*var sql="select * from topic";
 // conn.query(sql, function(err, rows, fields){
 
 // 	if(err){
@@ -21,7 +21,19 @@ conn.connect();
 // });
 
 var sql = "insert into topic values(0,?,?,?)";
-var params = ['qwe123','qwe123123123','asdasd21wdq'];
+var params = ['express','helping make web','GEONIL'];
+conn.query(sql, params, function(err, rows, fields){
+	if(err){
+		console.log(err);
+	}else{
+		console.log(rows.insertId);
+	}
+})
+
+
+
+var sql = "update topic set title=?, author=? where id=?";
+var params = ['geonil','GEONIL_JANG','3'];
 conn.query(sql, params, function(err, rows, fields){
 	if(err){
 		console.log(err);
@@ -30,6 +42,16 @@ conn.query(sql, params, function(err, rows, fields){
 	}
 })
 
+*/
 
+var sql = 'delete from topic where id = ?';
+var params = [3];
+conn.query(sql, params, function(err, rows, fields){
+	if(err){
+		console.log(err);
+	}else{
+		console.log(rows);
+	}
+})
 
 conn.end();
