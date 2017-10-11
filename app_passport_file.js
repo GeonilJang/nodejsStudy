@@ -83,8 +83,8 @@ passport.use(new LocalStrategy(
   }
 ));
 passport.use(new FacebookStrategy({
-    clientID: '1602353993419626',
-    clientSecret: '232bc1d3aca2199e6a27eb983e602e0b',
+    clientID: '203852876823189',
+    clientSecret: 'bf91dd17b3880a22e4e9e3b44dc13e54',
     callbackURL: "/auth/facebook/callback",
     profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
   },
@@ -134,6 +134,7 @@ app.get(
     }
   )
 );
+
 var users = [
   {
     authId:'local:egoing',
@@ -143,6 +144,7 @@ var users = [
     displayName:'Egoing'
   }
 ];
+
 app.post('/auth/register', function(req, res){
   hasher({password:req.body.password}, function(err, pass, salt, hash){
     var user = {
