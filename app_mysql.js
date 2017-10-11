@@ -23,10 +23,6 @@ app.locals.pretty = true;
 app.set('view engine', 'jade');
 app.set('views','./views_mysql');
 
-
-
-
-
 app.get('/topic/add', function(req, res){
 	var sql = 'select id, title from topic';
 	conn.query(sql, function(err, topics, fields){
@@ -43,7 +39,6 @@ app.get('/topic/add', function(req, res){
 })
 
 app.post('/topic/add', function(req, res){
-
 	var title = req.body.title;
 	var description= req.body.description;
 	var author= req.body.author;
@@ -58,7 +53,6 @@ app.post('/topic/add', function(req, res){
 		}
 	});
 });
-
 
 app.get(['/topic/:id/edit'], function(req, res){
 	var sql = 'select id, title from topic';
@@ -77,12 +71,9 @@ app.get(['/topic/:id/edit'], function(req, res){
 		}else{
 			res.render('view', {topics:topics});
 			res.status(500).send('this is no id');	
-		}
-		
+		}	
 	});
-
 })
-
 
 app.post(['/topic/:id/edit'], function(req, res){
 	var title = req.body.title;
@@ -102,7 +93,6 @@ app.post(['/topic/:id/edit'], function(req, res){
 });
 
 app.post('/topic', function(req, res){
-
 	var title = req.body.title;
 	var description= req.body.description;
 	fs.writeFile('data/'+title,description,function(err){
@@ -115,7 +105,6 @@ app.post('/topic', function(req, res){
 })
 
 app.get(['/topic','/topic/:id'], function(req, res){
-
 	var sql = 'select id, title from topic';
 	conn.query(sql, function(err, topics, fields){
 		var id = req.params.id;
@@ -132,9 +121,7 @@ app.get(['/topic','/topic/:id'], function(req, res){
 		}else{
 			res.render('view', {topics:topics});	
 		}
-		
 	});
-
 })
 
 
